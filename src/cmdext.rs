@@ -17,7 +17,9 @@ impl CapStdExtCommandExt for std::process::Command {
         unsafe {
             self.pre_exec(move || {
                 let target = rustix::io::OwnedFd::from_raw_fd(target);
-                rustix::io::dup2(&*fd, &target)?;
+                dbg!("hi");
+                dbg!(rustix::io::dup2(&*fd, &target))?;
+                dbg!("hi");
                 // Intentionally leak into the child.
                 let _ = target.into_raw_fd();
                 Ok(())

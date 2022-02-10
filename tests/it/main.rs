@@ -24,6 +24,7 @@ fn take_fd() -> Result<()> {
     dbg!("hi");
     drop(w);
     c.stdout(std::process::Stdio::piped());
+    c.stderr(std::process::Stdio::inherit());
     dbg!("hi");
     let s = c.output()?;
     dbg!("hi");
